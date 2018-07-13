@@ -48,5 +48,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\USBDetector\USBDetector.csproj">
+      <Project>{520B68CD-73B6-405D-9184-B5D886D899D0}</Project>
+      <Name>USBDetector</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
