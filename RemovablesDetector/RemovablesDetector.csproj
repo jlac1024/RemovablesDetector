@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{520B68CD-73B6-405D-9184-B5D886D899D0}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>USBDetector</RootNamespace>
-    <AssemblyName>USBDetector</AssemblyName>
+    <RootNamespace>RemovablesDetector</RootNamespace>
+    <AssemblyName>RemovablesDetector</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
