@@ -41,7 +41,7 @@
     <Compile Include="DataHelpers.cs" />
     <Compile Include="USBDisk.cs" />
     <Compile Include="USBEventArgs.cs" />
-    <Compile Include="USBWatcher.cs" />
+    <Compile Include="EventWatcher.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

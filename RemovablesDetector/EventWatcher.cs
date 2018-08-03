@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RemovablesDetector
 {
-    public class USBWatcher
+    public class EventWatcher
     {
         private Thread watcherThread;
         private bool shouldWatch = true;
@@ -18,17 +18,17 @@ namespace RemovablesDetector
         public event USBDeviceEventHandler DeviceInserted;
         public event USBDeviceEventHandler DeviceRemoved;
 
-        public USBWatcher()
+        public EventWatcher()
         {
             watcherThread = new Thread(new ThreadStart(() => { }));
         }
 
         private void threadRun()
         {
-            var mWatcher = new ManagementEventWatcher();
-            mWatcher.Query = new EventQuery("SELECT * FROM Win32_VolumeChangeEvent WHERE EventType = 2 OR EventType = 3");
+            var usbWatcher = new ManagementEventWatcher();
+            usbWatcher.Query = new EventQuery("SELECT * FROM Win32_VolumeChangeEvent WHERE EventType = 2 OR EventType = 3");
 
-            mWatcher.EventArrived += (s, ea) =>
+            usbWatcher.EventArrived += (s, ea) =>
             {
                 var driveName = $"{ea.NewEvent.Properties["DriveName"].Value}";
                 var type = (USBEventType)(Enum.Parse(typeof(USBEventType), $"{ea.NewEvent.Properties["EventType"].Value}"));
@@ -64,11 +64,12 @@ namespace RemovablesDetector
                 }
             };
 
-            mWatcher.Start();
+
+            usbWatcher.Start();
 
             while (shouldWatch) { Thread.Sleep(250); }
 
-            mWatcher.Stop();
+            usbWatcher.Stop();
         }
 
         public void Start()

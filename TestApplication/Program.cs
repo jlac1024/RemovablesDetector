@@ -11,7 +11,7 @@ namespace TestApplication
     {
         static void Main(string[] args)
         {
-            var usbWatcher = new USBWatcher();
+            var usbWatcher = new EventWatcher();
 
             usbWatcher.DeviceInserted += (s, ea) =>
             {
