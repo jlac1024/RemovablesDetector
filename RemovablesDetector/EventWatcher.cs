@@ -15,8 +15,11 @@ namespace RemovablesDetector
         private bool shouldWatch = true;
 
         public delegate void USBDeviceEventHandler(object Sender, USBEventArgs E);
+        public delegate void OpticalDeviceEventHandler(object Sender);
         public event USBDeviceEventHandler DeviceInserted;
         public event USBDeviceEventHandler DeviceRemoved;
+        public event OpticalDeviceEventHandler OpticalDiscInserted;
+        public event OpticalDeviceEventHandler OpticalDiscRemoved;
 
         public EventWatcher()
         {
@@ -64,12 +67,21 @@ namespace RemovablesDetector
                 }
             };
 
+            var cdWatcher = new ManagementEventWatcher();
+            cdWatcher.Query = new EventQuery("SELECT * FROM Win32_LogicalDisk WHERE DriveType = 5");
+
+            cdWatcher.EventArrived += (s, ea) =>
+            {
+
+            };
 
             usbWatcher.Start();
+            cdWatcher.Start();
 
             while (shouldWatch) { Thread.Sleep(250); }
 
             usbWatcher.Stop();
+            cdWatcher.Stop();
         }
 
         public void Start()

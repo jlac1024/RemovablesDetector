@@ -39,6 +39,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataHelpers.cs" />
+    <Compile Include="OpticalDisc.cs" />
+    <Compile Include="OpticalEventArgs.cs" />
     <Compile Include="USBDisk.cs" />
     <Compile Include="USBEventArgs.cs" />
     <Compile Include="EventWatcher.cs" />
