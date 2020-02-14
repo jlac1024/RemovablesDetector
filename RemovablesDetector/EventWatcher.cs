@@ -21,6 +21,9 @@ namespace RemovablesDetector
         public event OpticalDeviceEventHandler OpticalDiscInserted;
         public event OpticalDeviceEventHandler OpticalDiscRemoved;
 
+        public bool WatchUSB { get; set; } = true;
+        public bool WatchCD { get; set; } = false;
+
         public EventWatcher()
         {
             watcherThread = new Thread(new ThreadStart(() => { }));
@@ -75,8 +78,14 @@ namespace RemovablesDetector
 
             };
 
-            usbWatcher.Start();
-            cdWatcher.Start();
+            if (WatchUSB)
+            {
+                usbWatcher.Start();
+            }
+            if (WatchCD)
+            {
+                cdWatcher.Start();
+            }
 
             while (shouldWatch) { Thread.Sleep(250); }
 
